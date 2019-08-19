@@ -51,13 +51,14 @@ var imagePuzzle = {
 
                     let vals = Array.from(helper.doc('sortable').children).map(x => x.id);
                     var now = new Date().getTime();
-                    document.querySelectorAll('.stepCount').textContent = ++imagePuzzle.stepCount;
+                    helper.doc('stepCount').textContent = ++imagePuzzle.stepCount;
                     document.querySelector('.timeCount').textContent = (parseInt((now - imagePuzzle.startTime) / 1000, 10));
 
                     if (isSorted(vals)) {
                         // helper.doc('actualImageBox').style.display = 'none';
                         // helper.doc('gameOver').style.display = 'block';
                         helper.doc('actualImageBox').innerHTML = helper.doc('gameOver').innerHTML;
+                        helper.doc('stepCount').textContent = imagePuzzle.stepCount;
                     }
                 }
             };
