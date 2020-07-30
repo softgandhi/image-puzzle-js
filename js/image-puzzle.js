@@ -46,8 +46,19 @@ var imagePuzzle = {
 
                 if (origin && dest && p) {
                     let temp = dest.nextSibling;
-                    p.insertBefore(dest, origin);
-                    p.insertBefore(origin, temp);
+                    let x_diff = origin.offsetLeft-dest.offsetLeft;
+                    let y_diff = origin.offsetTop-dest.offsetTop;
+
+                    if(y_diff == 0 && x_diff >0){
+                        //LEFT SWAP
+                        p.insertBefore(origin, dest);
+                        p.insertBefore(temp, origin);
+                    }
+                    else{
+                        p.insertBefore(dest, origin);
+                        p.insertBefore(origin, temp);
+                    }
+
 
                     let vals = Array.from(helper.doc('sortable').children).map(x => x.id);
                     var now = new Date().getTime();
